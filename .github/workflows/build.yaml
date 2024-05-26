@@ -43,3 +43,11 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: 'trivy-results.sarif'
+
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.PAT }}
+          repository: https://github.com/kcearns/k8s-express-helm
+          event-type: update-values
+          client-payload: '{"tag": "${{ steps.short-sha.outputs.sha }}"}'
