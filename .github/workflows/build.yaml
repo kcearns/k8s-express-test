@@ -34,7 +34,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'ghcr.io/${{ github.actor }}/k8s-express-test:${{ steps.short-sha.outputs.sha }}'
+          image-ref: 'ghcr.io/${{ github.repository }}/k8s-express-test:${{ steps.short-sha.outputs.sha }}'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results.sarif'
